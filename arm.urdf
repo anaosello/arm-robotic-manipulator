@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!-- A.R.M. - Manipulador RPP (revoluta + 2 prismaticas) - v0.1 conceitual -->
+<!-- STATUS: NAO VALIDADO PARA VOO/FABRICACAO. Gerado a partir de ARM_RPP_v01.FCStd. -->
+<!-- Unidades: metros, radianos, kg, kg*m^2. Meshes em models/meshes (mm->m). -->
+<!-- FK preservada: x=-d3*sin(th1), y=d3*cos(th1), z=l1+d2 ; l1=0.120 m -->
+<!-- q1=th1 [rad]; q2=d2 [m]; q3=d3-0.100 [m] (offset do atuador; d3=0.100+q3) -->
+<robot name="arm_rpp">
+
+  <!-- ================= base_link (estrutura fixa ao drone) ================= -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/base_link.stl"/></geometry>
+      <material name="aluminio"><color rgba="0.78 0.78 0.82 1.0"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/base_link.stl"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.02663" rpy="0 0 0"/>
+      <mass value="0.9875"/>
+      <inertia ixx="1.0700e-03" ixy="0.0" ixz="0.0"
+               iyy="1.0676e-03" iyz="0.0" izz="1.0503e-03"/>
+    </inertial>
+  </link>
+
+  <!-- ================= Junta 1: REVOLUTA (theta1, eixo z) ================= -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <!-- limite de posicao do CAD: theta1 in [-90, 90] deg -->
+    <!-- effort/velocity do catalogo XM430 (nominal, confirmar): 0.82 Nm continuo; velocidade a confirmar -->
+    <limit lower="-1.570796" upper="1.570796" effort="0.82" velocity="4.8"/>
+  </joint>
+
+  <!-- ================= link1 (coluna rotativa + guias verticais) ================= -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link1.stl"/></geometry>
+      <material name="aluminio"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link1.stl"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 -0.00397 0.16572" rpy="0 0 0"/>
+      <mass value="0.8490"/>
+      <inertia ixx="7.6429e-03" ixy="0.0" ixz="0.0"
+               iyy="8.3756e-03" iyz="1.2344e-04" izz="9.5275e-04"/>
+    </inertial>
+  </link>
+
+  <!-- ================= Junta 2: PRISMATICA (d2, eixo z, vertical) ================= -->
+  <joint name="joint2" type="prismatic">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <!-- limite de curso do CAD: d2 in [0, 0.100] m -->
+    <!-- effort/velocity do catalogo Actuonix T16-200: 90 N; 0.018 m/s (sem carga) -->
+    <limit lower="0.0" upper="0.100" effort="90.0" velocity="0.018"/>
+  </joint>
+
+  <!-- ================= link2 (carro vertical + braco horizontal fixo) ================= -->
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link2.stl"/></geometry>
+      <material name="aluminio"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link2.stl"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.04618 0.13638 0.16168" rpy="0 0 0"/>
+      <mass value="0.6040"/>
+      <inertia ixx="7.0886e-03" ixy="-7.2858e-04" ixz="-4.4659e-05"
+               iyy="8.3188e-04" iyz="-2.0364e-04" izz="7.6323e-03"/>
+    </inertial>
+  </link>
+
+  <!-- ================= Junta 3: PRISMATICA (d3, eixo y, horizontal) ================= -->
+  <joint name="joint3" type="prismatic">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <!-- q3 = d3 - 0.100 ; curso do CAD: q3 in [0, 0.200] m  (d3 in [0.100, 0.300] m) -->
+    <!-- effort/velocity do catalogo Actuonix T16-100 (horizontal T16-200 na peca): 90 N; 0.018 m/s -->
+    <limit lower="0.0" upper="0.200" effort="90.0" velocity="0.018"/>
+  </joint>
+
+  <!-- ================= link3 (carro horizontal + eletroima/efetuador) ================= -->
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link3.stl"/></geometry>
+      <material name="aluminio"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="meshes/link3.stl"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.01564 0.10259 0.15422" rpy="0 0 0"/>
+      <mass value="0.2187"/>
+      <inertia ixx="1.6244e-04" ixy="8.8725e-06" ixz="-7.8483e-05"
+               iyy="3.3326e-04" iyz="6.5646e-06" izz="2.5253e-04"/>
+    </inertial>
+  </link>
+
+  <!-- ================= TCP / efetuador (face do eletroima) ================= -->
+  <!-- Frame fixo na face de contato do eletroima: link3-local (0, 0.100, 0.120) m -->
+  <joint name="tcp_joint" type="fixed">
+    <parent link="link3"/>
+    <child link="tcp"/>
+    <origin xyz="0.0 0.100 0.120" rpy="0 0 0"/>
+  </joint>
+  <link name="tcp"/>
+
+</robot>

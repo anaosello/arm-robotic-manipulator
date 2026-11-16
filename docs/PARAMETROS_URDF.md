@@ -55,12 +55,18 @@ Inércia expressa no frame do elo (coincide com o global em home), com `<origin>
 
 | Link | Massa (kg) | CoM (m) [x,y,z] | ixx | iyy | izz | ixy | ixz | iyz (kg·m²) |
 |------|-----------|-----------------|-----|-----|-----|-----|-----|-----|
-| base_link | 0,9875 | [0; 0; 0,02663] | 1,070e-3 | 1,068e-3 | 1,050e-3 | 0 | 0 | 0 |
-| link1 | 0,8490 | [0; −0,00397; 0,16572] | 7,643e-3 | 8,376e-3 | 9,528e-4 | 0 | 0 | 1,234e-4 |
-| link2 | 0,6040 | [0,04618; 0,13638; 0,16168] | 7,089e-3 | 8,319e-4 | 7,632e-3 | −7,286e-4 | −4,466e-5 | −2,036e-4 |
-| link3 | 0,2187 | [0,01564; 0,10259; 0,15422] | 1,624e-4 | 3,333e-4 | 2,525e-4 | 8,873e-6 | −7,848e-5 | 6,565e-6 |
+| base_link | 0,9875 | [0; 0; 0,02580] | 1,063e-3 | 1,061e-3 | 1,050e-3 | 0 | 0 | 0 |
+| link1 | 0,7202 | [0; −0,00467; 0,17689] | 5,269e-3 | 6,003e-3 | 9,048e-4 | 0 | 0 | 8,454e-5 |
+| link2 | 0,6335 | [0,04704; 0,13786; 0,16160] | 7,457e-3 | 8,644e-4 | 8,031e-3 | −7,313e-4 | −3,734e-5 | −2,087e-4 |
+| link3 | 0,2187 | [0,01564; 0,09645; 0,15439] | 1,577e-4 | 3,307e-4 | 2,489e-4 | −1,228e-5 | −7,792e-5 | −3,877e-6 |
 
-**Massa total modelada = 2,659 kg.**
+**Massa total modelada = 2,560 kg.**
+
+> **Revisão geométrica v0.2:** meshes e inércias regeradas a partir do CAD corrigido
+> (disco afinado para assentar a coluna, atuador vertical reconstruído como sólido limpo,
+> abertura de passagem na travessa do pórtico, eixo/brackets/efetuador reposicionados em
+> revisões anteriores). Valores acima calculados diretamente dos sólidos atuais em home
+> (Al 2700, aço 7850 kg/m³; comerciais com catálogo pelo envelope; sem catálogo só na mesh).
 
 Valores recalculados após o refino geométrico (v0.1 realista): as peças custom passaram a
 ter geometria com rebaixos/furos de fixação e envelopes mais fiéis, e o **atuador vertical

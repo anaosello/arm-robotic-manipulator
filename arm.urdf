@@ -18,10 +18,10 @@
       <geometry><mesh filename="meshes/base_link.stl"/></geometry>
     </collision>
     <inertial>
-      <origin xyz="0.0 0.0 0.02663" rpy="0 0 0"/>
+      <origin xyz="0.00000 0.00000 0.02580" rpy="0 0 0"/>
       <mass value="0.9875"/>
-      <inertia ixx="1.0700e-03" ixy="0.0" ixz="0.0"
-               iyy="1.0676e-03" iyz="0.0" izz="1.0503e-03"/>
+      <inertia ixx="1.0634e-03" ixy="0.0" ixz="0.0"
+               iyy="1.0610e-03" iyz="0.0" izz="1.0503e-03"/>
     </inertial>
   </link>
 
@@ -48,10 +48,10 @@
       <geometry><mesh filename="meshes/link1.stl"/></geometry>
     </collision>
     <inertial>
-      <origin xyz="0.0 -0.00397 0.16572" rpy="0 0 0"/>
-      <mass value="0.8490"/>
-      <inertia ixx="7.6429e-03" ixy="0.0" ixz="0.0"
-               iyy="8.3756e-03" iyz="1.2344e-04" izz="9.5275e-04"/>
+      <origin xyz="0.00000 -0.00467 0.17689" rpy="0 0 0"/>
+      <mass value="0.7202"/>
+      <inertia ixx="5.2691e-03" ixy="0.0" ixz="0.0"
+               iyy="6.0034e-03" iyz="8.4545e-05" izz="9.0484e-04"/>
     </inertial>
   </link>
 
@@ -78,10 +78,10 @@
       <geometry><mesh filename="meshes/link2.stl"/></geometry>
     </collision>
     <inertial>
-      <origin xyz="0.04618 0.13638 0.16168" rpy="0 0 0"/>
-      <mass value="0.6040"/>
-      <inertia ixx="7.0886e-03" ixy="-7.2858e-04" ixz="-4.4659e-05"
-               iyy="8.3188e-04" iyz="-2.0364e-04" izz="7.6323e-03"/>
+      <origin xyz="0.04704 0.13786 0.16160" rpy="0 0 0"/>
+      <mass value="0.6335"/>
+      <inertia ixx="7.4567e-03" ixy="-7.3134e-04" ixz="-3.7342e-05"
+               iyy="8.6444e-04" iyz="-2.0874e-04" izz="8.0308e-03"/>
     </inertial>
   </link>
 
@@ -108,10 +108,10 @@
       <geometry><mesh filename="meshes/link3.stl"/></geometry>
     </collision>
     <inertial>
-      <origin xyz="0.01564 0.10259 0.15422" rpy="0 0 0"/>
+      <origin xyz="0.01564 0.09645 0.15439" rpy="0 0 0"/>
       <mass value="0.2187"/>
-      <inertia ixx="1.6244e-04" ixy="8.8725e-06" ixz="-7.8483e-05"
-               iyy="3.3326e-04" iyz="6.5646e-06" izz="2.5253e-04"/>
+      <inertia ixx="1.5767e-04" ixy="-1.2283e-05" ixz="-7.7921e-05"
+               iyy="3.3067e-04" iyz="-3.8774e-06" izz="2.4893e-04"/>
     </inertial>
   </link>
 
